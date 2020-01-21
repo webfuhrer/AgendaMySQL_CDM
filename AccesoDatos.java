@@ -44,11 +44,16 @@ public static void inicializarBD()
         }
     }
 
-    static ArrayList<Contacto> recuperarContactos() {
+    static ArrayList<Contacto> recuperarContactos(String nombre_buscado) {
         ArrayList<Contacto> lista=new ArrayList<>();
         try {
-        
+            
             String query="SELECT * FROM t_contactos";
+            if (nombre_buscado!="")
+            {
+                query +=" WHERE nombre='"+nombre_buscado+"'";
+            }
+            
             ResultSet rs=stmt.executeQuery(query);
             while(rs.next())
             {

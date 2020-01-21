@@ -26,9 +26,16 @@ public class ClasePrincipal {
                     break;
                 case EntradaSalida.LISTAR:
                     //1-Método en AccesoDatos que me devuelva un ArrayList<Contacto>
-                    ArrayList<Contacto> lista_contactos=AccesoDatos.recuperarContactos();
+                    ArrayList<Contacto> lista_contactos=
+                            AccesoDatos.recuperarContactos("");
                     //System.out.println(lista_contactos);
                     EntradaSalida.mostrarContactos(lista_contactos);
+                    break;
+                case EntradaSalida.BUSCAR:
+                    String nombre_buscado=EntradaSalida.pedirNombre();
+                    ArrayList<Contacto> lista_contactos_buscados=
+                            AccesoDatos.recuperarContactos(nombre_buscado);
+                     EntradaSalida.mostrarContactos(lista_contactos_buscados);
                     break;
             }
             opcion=EntradaSalida.pedirOpcion();
