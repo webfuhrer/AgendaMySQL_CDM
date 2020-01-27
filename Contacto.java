@@ -12,6 +12,13 @@ package com.mycompany.proyectoagendamysql;
 public class Contacto {
     private String nombre;
     private String telefono;
+    private int id;
+
+    public Contacto(String nombre, String telefono, int id) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.id = id;
+    }
 
     public Contacto(String nombre, String telefono) {
         this.nombre = nombre;
@@ -36,7 +43,7 @@ public class Contacto {
 
     @Override
     public String toString() {
-        return "Contacto{" + "nombre=" + nombre + ", telefono=" + telefono + '}';
+        return id+" "+nombre+"->"+telefono;
     }
     
 }

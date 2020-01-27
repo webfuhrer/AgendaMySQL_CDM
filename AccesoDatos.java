@@ -37,7 +37,7 @@ public static void inicializarBD()
              
             String nombre=c.getNombre();
             String telefono=c.getTelefono();
-            String sql="INSERT INTO t_contactos values ('"+nombre+"', '"+telefono+"')";
+            String sql="INSERT INTO t_contactos(nombre, telefono) values ('"+nombre+"', '"+telefono+"')";
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(AccesoDatos.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,7 +59,8 @@ public static void inicializarBD()
             {
                 String nombre=rs.getString("nombre");
                 String telefono=rs.getString("telefono");
-                Contacto c=new Contacto(nombre, telefono);
+                int id=rs.getInt("id");
+                Contacto c=new Contacto(nombre, telefono, id);
                 lista.add(c);
             }
         } catch (SQLException ex) {
@@ -67,6 +68,25 @@ public static void inicializarBD()
         }
         
         return lista;
+    }
+
+    static void actualizarNombre(int id, String nuevo_nombre) {
+       String query="UPDATE t_contactos SET nombre='"+nuevo_nombre+"' WHERE id="+id;
+    try {
+        stmt.executeUpdate(query);
+    } catch (SQLException ex) {
+        Logger.getLogger(AccesoDatos.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
+
+
+    static void actualizarTelefono(int id, String nuevo_telefono) {
+       String query="UPDATE t_contactos SET telefono='"+nuevo_telefono+"' WHERE id="+id;
+       try {
+        stmt.executeUpdate(query);
+    } catch (SQLException ex) {
+        Logger.getLogger(AccesoDatos.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     
 }
